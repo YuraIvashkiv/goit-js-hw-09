@@ -9,7 +9,6 @@ stopBtnEl.disabled = true
 startBtnEl.addEventListener('click', startChange);
 stopBtnEl.addEventListener('click', stopChange);
 
-
 function startChange() {
     stopBtnEl.disabled = false;
     startBtnEl.disabled = true;
