@@ -12,9 +12,13 @@ refs.form.addEventListener('submit', FormSubmit)
     function FormSubmit(event){
     event.preventDefault();
     
- let delay = parseInt(refs.delayInput.value);
-  const step = parseInt(refs.stepInput.value);
-  const amount = parseInt(refs.amountInput.value);
+ let delay = cleanInputValue(refs.delayInput.value);
+  const step = cleanInputValue(refs.stepInput.value);
+  const amount = cleanInputValue(refs.amountInput.value);
+
+    refs.delayInput.value = '';
+  refs.stepInput.value = '';
+  refs.amountInput.value = '';
 
     for (let i = 1; i <= amount; i+=1) {
       const position = i;
@@ -32,10 +36,14 @@ refs.form.addEventListener('submit', FormSubmit)
       delay += step
   }
 }
+
+function cleanInputValue(value){
+  return parseInt(value)
+};
 function createPromise(position, delay) {
      const shouldResolve = Math.random() > 0.3;
- return new Promise((resolve, reject) => {
-    setTimeout(() => {
+  return new Promise((resolve, reject) => {
+       setTimeout(() => {
       if (shouldResolve) {
         resolve({ position, delay });
       } else {
